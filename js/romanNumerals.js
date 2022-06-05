@@ -9,34 +9,34 @@
   # 6b. Subtract ARABIC_NUMBER from INPUT_NUMBER EVENLY_DIVISIBLE_TIMES
 # 7. Return OUTPUT
 */
-// exports.
-toRoman = function(num) {
+exports.toRoman = function(num) {
     const numeralMap = {
-        'M': 1000,
+        'M' : 1000,
         'CM': 900,
-        'D': 500,
+        'D' : 500,
         'CD': 400,
-        'C': 100,
+        'C' : 100,
         'XC': 90,
-        'L': 50,
+        'L' : 50,
         'XL': 40,
-        'X': 10,
-        'V': 5,
+        'X' : 10,
+        'IX': 9,
+        'V' : 5,
         'IV': 4,
-        'I': 1,
+        'I' : 1,
     };
-    const processingOrder = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'V', 'IV', 'I'];
+    const processingOrder = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
     let times_divisible = 0;
     let remainder = 0;
     let romanized = '';
 
     for (let numeral of processingOrder) {
-        times_divisible = Math.floor(numeralMap[numeral] / num);
-        remainder = numeralMap[numeral] % num;
-        romanized.concat(numeral.repeat(times_divisible));
+        times_divisible = Math.floor(num / numeralMap[numeral]);
+        remainder = num % numeralMap[numeral];
+        romanized = romanized.concat(numeral.repeat(times_divisible));
         num = remainder;
+
     }
 
     return romanized;
 }
-toRoman(999)
